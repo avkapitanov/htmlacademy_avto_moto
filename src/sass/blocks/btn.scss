@@ -1,0 +1,20 @@
+.btn {
+  padding: 16px 20px;
+  background-color: #D12136;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #F6F7FF;
+  justify-content: center;
+  text-transform: uppercase;
+
+  &--light {
+    border: 1px solid #D12136;
+    background-color: transparent;
+    color: #D12136;
+  }
+}

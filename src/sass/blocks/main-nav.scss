@@ -1,0 +1,17 @@
+.main-nav {
+  .main-nav__list {
+    @include reset-list();
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .main-nav__link {
+    &--active,
+    &:hover,
+    &:active {
+      @include hover-animation();
+      color: #D12136;
+    }
+  }
+}

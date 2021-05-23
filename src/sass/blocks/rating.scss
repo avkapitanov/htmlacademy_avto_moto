@@ -1,0 +1,28 @@
+.rating {
+  display: flex;
+  justify-content: space-between;
+
+  &__input {
+    position:absolute;
+    top:-9999px;
+  }
+
+  &__label {
+    margin-right: 5px;
+  }
+
+  &__star {
+    fill: #BDBEC2;
+
+    &--active {
+      fill: #D12136;
+    }
+  }
+
+  &__text {
+    font-size: 15px;
+    line-height: 20px;
+    color: #D12136;
+    margin-left: 20px;
+  }
+}

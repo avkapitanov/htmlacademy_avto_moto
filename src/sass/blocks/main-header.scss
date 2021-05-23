@@ -1,0 +1,14 @@
+.main-header {
+  background-color: #F5F5F9;
+
+  &__container {
+    min-height: 84px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__nav {
+    min-width: 610px;
+  }
+}

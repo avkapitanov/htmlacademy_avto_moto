@@ -1,0 +1,16 @@
+.main-footer {
+  height: 82px;
+  margin-top: 140px;
+  background-color: #F5F5F9;
+
+  &__container {
+    min-height: 82px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__nav {
+    width: 100%;
+  }
+}

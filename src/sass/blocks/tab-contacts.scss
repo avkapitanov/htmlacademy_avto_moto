@@ -1,0 +1,30 @@
+.tab-contacts {
+  display: flex;
+  width: 780px;
+  justify-content: space-between;
+
+  color: #000000;
+
+  &__map {
+    width: 431px;
+    height: 271px;
+  }
+
+  &__info-item {
+    margin-bottom: 35px;
+  }
+
+  &__info-item-title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    margin: 0 0 15px;
+  }
+
+  &__info-item-value {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    font-style: normal;
+  }
+}

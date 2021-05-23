@@ -1,0 +1,16 @@
+.tab-characteristics {
+  @include reset-list();
+  width: 565px;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #D7D9DF;
+    margin-bottom: 20px;
+  }
+
+  &__item-name {
+    margin: 0;
+  }
+}

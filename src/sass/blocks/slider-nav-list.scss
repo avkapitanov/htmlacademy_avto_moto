@@ -1,0 +1,6 @@
+.slider-nav-list {
+  @include reset-list();
+  width: 435px;
+  display: flex;
+  justify-content: space-between;
+}
