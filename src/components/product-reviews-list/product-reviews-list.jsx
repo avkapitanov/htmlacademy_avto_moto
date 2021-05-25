@@ -1,6 +1,5 @@
 import React, {useState} from "react";
-import PropTypes from "prop-types";
-import reviewProp from "../pages/product-page/reviews.prop";
+import reviewsProp from "../pages/product-page/reviews.prop";
 import ProductReviewItem from "../product-review-item/product-review-item";
 import {getReviews} from "../../store/selectors";
 import {connect} from "react-redux";
@@ -9,12 +8,29 @@ import {KEY_CODE_FOR_CLOSE_POPUP} from "../../constants";
 
 const ProductReviewsList = (props) => {
   const {reviews} = props;
+  const lockClass = `body--lock`;
 
   const [isVisibleForm, setVisibleForm] = useState(false);
+
+  const body = document.querySelector(`body`);
+
+  const getBodyScrollTop = () => {
+    return self.pageYOffset || (document.documentElement && document.documentElement.ScrollTop) || (document.body && document.body.scrollTop);
+  };
+
+  const existVerticalScroll = () => {
+    return document.body.offsetHeight > window.innerHeight;
+  };
 
   const showAddReviewForm = () => {
     setVisibleForm(true);
     window.addEventListener(`keydown`, closeFormByEsc);
+    body.dataset.scrollY = getBodyScrollTop();
+
+    if (existVerticalScroll()) {
+      body.classList.add(lockClass);
+      body.style.top = `-${body.dataset.scrollY}px`;
+    }
   };
 
   const closeFormByEsc = (evt) => {
@@ -27,6 +43,11 @@ const ProductReviewsList = (props) => {
   const closeAddReviewForm = () => {
     setVisibleForm(false);
     window.removeEventListener(`keydown`, closeFormByEsc);
+
+    if (existVerticalScroll()) {
+      body.classList.remove(lockClass);
+      window.scrollTo(0, body.dataset.scrollY);
+    }
   };
 
   return (
@@ -45,7 +66,7 @@ const ProductReviewsList = (props) => {
 };
 
 ProductReviewsList.propTypes = {
-  reviews: PropTypes.arrayOf(reviewProp)
+  reviews: reviewsProp
 };
 
 const mapStateToProps = (state) => ({

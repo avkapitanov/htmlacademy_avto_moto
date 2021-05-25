@@ -18,7 +18,7 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 22px;
-    margin: 0 0 15px;
+    margin: 0 0 9px;
   }
 
   &__info-item-value {
@@ -26,5 +26,17 @@
     font-size: 14px;
     line-height: 19px;
     font-style: normal;
+  }
+}
+
+@media (max-width: $tablet-width) {
+  .tab-contacts {
+    width: auto;
+  }
+}
+
+@media (max-width: 670px) {
+  .tab-contacts {
+    flex-wrap: wrap;
   }
 }

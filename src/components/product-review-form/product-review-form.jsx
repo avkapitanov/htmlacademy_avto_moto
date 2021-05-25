@@ -68,28 +68,36 @@ const ProductReviewForm = (props) => {
       <form className="tab-reviews__form review-form" onSubmit={handleSubmit}>
         <p className="review-form__title">Оставить отзыв</p>
         <button className="review-form__close" type="button" onClick={onCloseFormHandler} aria-label="Закрыть форму"></button>
-        <p className="review-form__group review-form__group--required">
-          <label className="review-form__label visually-hidden" htmlFor="">Имя</label>
-          {error.author ? errorEmptyField : null }
-          <input className={`review-form__input ${error.author ? `review-form__input--error` : ``}`} type="text" placeholder="Имя" ref={nameRef} onChange={handleChange} onBlur={handleFocus} onFocus={handleFocus} name="author"/>
-        </p>
-        <p className="review-form__group">
-          <label className="review-form__label visually-hidden" htmlFor="">Достоинства</label>
-          <input className="review-form__input" type="text" placeholder="Достоинства" onChange={handleChange} name="dignity"/>
-        </p>
-        <p className="review-form__group">
-          <label className="review-form__label visually-hidden" htmlFor="">Недостатки</label>
-          <input className="review-form__input" type="text" placeholder="Недостатки" onChange={handleChange} name="disadvantages"/>
-        </p>
 
-        <StarRatingInput onChangeHandler={handleChange}/>
+        <div className="review-form__fields">
+          <fieldset className="review-form__fields-set">
+            <p className="review-form__group review-form__group--required">
+              <label className="review-form__label visually-hidden" htmlFor="">Имя</label>
+              {error.author ? errorEmptyField : null }
+              <input className={`review-form__input ${error.author ? `review-form__input--error` : ``}`} type="text" placeholder="Имя" ref={nameRef} onChange={handleChange} onBlur={handleFocus} onFocus={handleFocus} name="author"/>
+            </p>
+            <p className="review-form__group">
+              <label className="review-form__label visually-hidden" htmlFor="">Достоинства</label>
+              <input className="review-form__input" type="text" placeholder="Достоинства" onChange={handleChange} name="dignity"/>
+            </p>
+            <p className="review-form__group">
+              <label className="review-form__label visually-hidden" htmlFor="">Недостатки</label>
+              <input className="review-form__input" type="text" placeholder="Недостатки" onChange={handleChange} name="disadvantages"/>
+            </p>
+          </fieldset>
 
-        <p className="review-form__group review-form__group--required">
-          <span className="review-form__group-error">Пожалуйста, заполните поле</span>
-          <label className="review-form__label visually-hidden" htmlFor="">Комментарий</label>
-          {error.text ? errorEmptyField : null }
-          <textarea className={`review-form__textarea ${error.text ? `review-form__textarea--error` : ``}`} placeholder="Комментарий" onChange={handleChange} onBlur={handleFocus} onFocus={handleFocus} name="text"></textarea>
-        </p>
+          <fieldset className="review-form__fields-set review-form__fields-set--right">
+            <StarRatingInput onChangeHandler={handleChange}/>
+
+            <p className="review-form__group review-form__group--required review-form__group--text">
+              <span className="review-form__group-error">Пожалуйста, заполните поле</span>
+              <label className="review-form__label visually-hidden" htmlFor="">Комментарий</label>
+              {error.text ? errorEmptyField : null }
+              <textarea className={`review-form__textarea ${error.text ? `review-form__textarea--error` : ``}`} placeholder="Комментарий" onChange={handleChange} onBlur={handleFocus} onFocus={handleFocus} name="text"></textarea>
+            </p>
+          </fieldset>
+        </div>
+
         <button className="review-form__submit-btn btn" type="submit">Оставить отзыв</button>
       </form>
       <div className="tab-reviews__overlay" onClick={onCloseFormHandler}></div>

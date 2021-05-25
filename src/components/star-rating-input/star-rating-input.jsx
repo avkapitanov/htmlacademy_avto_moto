@@ -8,6 +8,7 @@ const StarRatingInput = (props) => {
 
   return (
     <div className="review-form__rating review-rating">
+      <span className="review-rating__title">Оцените товар:</span>
       <div className="review-rating__stars">
         {[...Array(MAX_RATING_VALUE).keys()].reverse().map((numb) => {
           const value = ++numb;

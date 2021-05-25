@@ -29,3 +29,11 @@
     min-width: 195px;
   }
 }
+
+@media (max-width: $tablet-width) {
+  .tabs-nav {
+    &__list {
+      overflow: scroll;
+    }
+  }
+}

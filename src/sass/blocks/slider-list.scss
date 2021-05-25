@@ -1,15 +1,24 @@
 .slider-list {
   @include reset-list();
   overflow: hidden;
-  height: 375px;
+
+  &__image {
+    display: block;
+  }
 
   &__item {
     display: none;
 
     &--active {
       display: block;
-      opacity: 1;
-      //animation: show-up 1.5s ease;
+    }
+  }
+}
+
+@media (max-width: 970px) {
+  .slider-list {
+    &__image {
+      width: 100%;
     }
   }
 }

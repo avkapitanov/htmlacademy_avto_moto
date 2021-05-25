@@ -24,7 +24,7 @@ const ProductReviewItem = (props) => {
       {disadvantagesBlock}
       <div className="product-review__text-block">
         <div className="product-review__text-block-title review-section-title">Комментарий</div>
-        <p className="product-review__text-block-content">{text}</p>
+        <p className="product-review__text-block-content product-review__text-block-content--text">{text}</p>
       </div>
       <StarRating rating={rating} />
       <ReactTimeAgo className="product-review__date" date={date}/>

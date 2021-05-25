@@ -3,7 +3,7 @@ import {extend} from "../../../utils";
 
 const initialState = {
   product: null,
-  reviews: null
+  reviews: []
 };
 
 const data = (state = initialState, action) => {

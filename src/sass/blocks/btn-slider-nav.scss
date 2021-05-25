@@ -10,6 +10,12 @@
   justify-content: center;
   align-items: center;
 
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    border-color: #BD0C21;
+    @include hover-animation();
+  }
+
   &__icon {
     stroke: #48494D;
 

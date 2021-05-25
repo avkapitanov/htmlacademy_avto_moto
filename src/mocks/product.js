@@ -8,11 +8,11 @@ const product = {
   options: [
     {
       type: `engine-type`,
-      text: `Бензин`,
+      text: `бензин`,
     },
     {
       type: `transmission`,
-      text: `Механика`,
+      text: `механика`,
     },
     {
       type: `power`,
@@ -56,9 +56,9 @@ const product = {
   images: [
     {
       middle: `./img/content/product-image-1.jpg`,
-      middle2x: `./img/content/product-image-1.jpg`,
+      middle2x: `./img/content/product-image-1@2x.jpg`,
       preview: `./img/content/product-image-preview-1.jpg`,
-      preview2x: `./img/content/product-image-preview-1.jpg`,
+      preview2x: `./img/content/product-image-preview-1@2x.jpg`,
     },
     {
       middle: `./img/content/product-image-2.jpg`,

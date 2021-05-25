@@ -1,6 +1,5 @@
 .main-footer {
-  height: 82px;
-  margin-top: 140px;
+  margin-top: 120px;
   background-color: #F5F5F9;
 
   &__container {
@@ -12,5 +11,16 @@
 
   &__nav {
     width: 100%;
+  }
+}
+
+@media (max-width: $tablet-width) {
+  .main-footer {
+    &__container {
+      display: block;
+    }
+
+    margin-top: 80px;
+    padding: 30px 0;
   }
 }

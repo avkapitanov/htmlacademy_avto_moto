@@ -1,10 +1,11 @@
 .btn {
-  padding: 16px 20px;
+  padding: 16px 19px;
   background-color: #D12136;
   border: none;
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
+  letter-spacing: 0.12em;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -12,9 +13,17 @@
   justify-content: center;
   text-transform: uppercase;
 
+  &:hover,
+  &:focus {
+    background-color: #BD0C21;
+    color: #F6F7FF;
+    @include hover-animation();
+  }
+
   &--light {
     border: 1px solid #D12136;
     background-color: transparent;
     color: #D12136;
+    padding: 15px 19px;
   }
 }

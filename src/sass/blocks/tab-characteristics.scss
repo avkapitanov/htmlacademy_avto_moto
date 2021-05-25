@@ -5,12 +5,16 @@
   &__item {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 8px;
+    padding-bottom: 7px;
     border-bottom: 1px solid #D7D9DF;
     margin-bottom: 20px;
   }
 
   &__item-name {
     margin: 0;
+  }
+
+  @media (max-width: $tablet-width) {
+    width: auto;
   }
 }

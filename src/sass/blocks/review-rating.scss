@@ -1,4 +1,16 @@
 .review-rating {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 21px;
+
+  &__title {
+    margin-right: 15px;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 600;
+  }
 
   &__stars {
     display: flex;
@@ -24,11 +36,23 @@
 
   &__label {
     cursor: pointer;
+    margin-right: 8px;
 
     &:hover &__star,
     &:hover + .review-rating__label .review-rating__star,
     &:hover ~ .review-rating__label .review-rating__star {
       fill: #D12136;
     }
+
+    &:first-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .review-rating {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

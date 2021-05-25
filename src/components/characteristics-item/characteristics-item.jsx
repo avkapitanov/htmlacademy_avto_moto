@@ -7,8 +7,8 @@ const CharacteristicsItem = (props) => {
 
   return (
     <div className="tab-characteristics__item">
-      <dd className="tab-characteristics__item-name">{name}</dd>
-      <dt className="tab-characteristics__item-value">{value}</dt>
+      <dt className="tab-characteristics__item-name">{name}</dt>
+      <dd className="tab-characteristics__item-value">{value}</dd>
     </div>
   );
 };

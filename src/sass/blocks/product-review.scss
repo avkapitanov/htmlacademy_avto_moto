@@ -3,12 +3,38 @@
   margin: 0 0 20px 0;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
 
+  &__text-block {
+    margin-bottom: 15px;
+  }
+
+  &__text-block-content {
+    font-size: 15px;
+    line-height: 20px;
+    margin: 3px 0 0px 20px;
+
+    &--text {
+      margin-left: 0;
+    }
+  }
+
+  &__rating {
+    margin-top: 20px;
+    margin-bottom: 24px;
+  }
+
   &__author {
     font-weight: 600;
     font-size: 20px;
     line-height: 27px;
     margin-bottom: 12px;
     display: block;
+  }
+
+  &__date {
+    font-size: 14px;
+    line-height: 19px;
+    color: #000000;
+    opacity: 0.4;
   }
 
   &__reply {
@@ -21,5 +47,12 @@
     font-size: 16px;
     line-height: 22px;
     cursor: pointer;
+    margin-left: 21px;
+
+    &:hover,
+    &:focus {
+      @include hover-animation();
+      color: #48494D;
+    }
   }
 }
