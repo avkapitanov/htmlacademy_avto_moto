@@ -1,6 +1,5 @@
 const product = {
   title: `Марпех 11`,
-  genre: `Drama`,
   price: 2300000,
   oldPrice: 2400000,
   creditStart: 11000,

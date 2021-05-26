@@ -36,8 +36,21 @@ const ProductReviewForm = (props) => {
     rating: 0
   });
 
+  const hasErrors = () => {
+    for (const [key] of Object.entries(error)) {
+      if (error[key] === true) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    if (hasErrors()) {
+      return;
+    }
+
     const {author, dignity, disadvantages, rating, text} = formValue;
     addReviewElement(author, dignity, disadvantages, rating, text, () => {
       evt.currentTarget.reset();
@@ -72,17 +85,17 @@ const ProductReviewForm = (props) => {
         <div className="review-form__fields">
           <fieldset className="review-form__fields-set">
             <p className="review-form__group review-form__group--required">
-              <label className="review-form__label visually-hidden" htmlFor="">Имя</label>
+              <label className="review-form__label visually-hidden" htmlFor="review-name">Имя</label>
               {error.author ? errorEmptyField : null }
-              <input className={`review-form__input ${error.author ? `review-form__input--error` : ``}`} type="text" placeholder="Имя" ref={nameRef} onChange={handleChange} onBlur={handleFocus} onFocus={handleFocus} name="author"/>
+              <input className={`review-form__input ${error.author ? `review-form__input--error` : ``}`} id="review-name" type="text" placeholder="Имя" ref={nameRef} onChange={handleChange} onBlur={handleFocus} onFocus={handleFocus} name="author"/>
             </p>
             <p className="review-form__group">
-              <label className="review-form__label visually-hidden" htmlFor="">Достоинства</label>
-              <input className="review-form__input" type="text" placeholder="Достоинства" onChange={handleChange} name="dignity"/>
+              <label className="review-form__label visually-hidden" htmlFor="review-dignity">Достоинства</label>
+              <input className="review-form__input" id="review-dignity" type="text" placeholder="Достоинства" onChange={handleChange} name="dignity"/>
             </p>
             <p className="review-form__group">
-              <label className="review-form__label visually-hidden" htmlFor="">Недостатки</label>
-              <input className="review-form__input" type="text" placeholder="Недостатки" onChange={handleChange} name="disadvantages"/>
+              <label className="review-form__label visually-hidden" htmlFor="review-disadvantages">Недостатки</label>
+              <input className="review-form__input" id="review-disadvantages" type="text" placeholder="Недостатки" onChange={handleChange} name="disadvantages"/>
             </p>
           </fieldset>
 
@@ -91,9 +104,9 @@ const ProductReviewForm = (props) => {
 
             <p className="review-form__group review-form__group--required review-form__group--text">
               <span className="review-form__group-error">Пожалуйста, заполните поле</span>
-              <label className="review-form__label visually-hidden" htmlFor="">Комментарий</label>
+              <label className="review-form__label visually-hidden" htmlFor="review-text">Комментарий</label>
               {error.text ? errorEmptyField : null }
-              <textarea className={`review-form__textarea ${error.text ? `review-form__textarea--error` : ``}`} placeholder="Комментарий" onChange={handleChange} onBlur={handleFocus} onFocus={handleFocus} name="text"></textarea>
+              <textarea className={`review-form__textarea ${error.text ? `review-form__textarea--error` : ``}`} id="review-text" placeholder="Комментарий" onChange={handleChange} onBlur={handleFocus} onFocus={handleFocus} name="text"></textarea>
             </p>
           </fieldset>
         </div>

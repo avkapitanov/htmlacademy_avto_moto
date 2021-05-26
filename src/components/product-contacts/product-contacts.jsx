@@ -13,7 +13,7 @@ const ProductContacts = () => {
         </div>
         <div className="tab-contacts__info-item">
           <p className="tab-contacts__info-item-title">Режим работы</p>
-          <p className="tab-contacts__info-item-value">Ежедневно, с 10:00 до 21:00</p>
+          <span className="tab-contacts__info-item-value">Ежедневно, с 10:00 до 21:00</span>
         </div>
         <div className="tab-contacts__info-item">
           <p className="tab-contacts__info-item-title">Телефон</p>
