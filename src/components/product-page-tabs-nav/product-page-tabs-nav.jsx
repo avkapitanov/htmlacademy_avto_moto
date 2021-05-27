@@ -30,7 +30,7 @@ const ProductPageTabsNav = (props) => {
 ProductPageTabsNav.propTypes = {
   tabs: PropTypes.array.isRequired,
   activeTab: PropTypes.string.isRequired,
-  onActiveTabChange: PropTypes.func.isRequired,
+  onActiveTabChange: PropTypes.func.isRequired
 };
 
 export default ProductPageTabsNav;

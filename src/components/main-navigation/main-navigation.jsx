@@ -7,9 +7,9 @@ const MainNavigation = (props) => {
 
   return (
     <nav className={`${classForWrapper} main-nav`}>
-      <ul className={`main-nav__list ${classForMenu ? classForMenu : ``}`}>
-        {links.map((elem, i) => (
-          <li className="main-nav__item" key={`menu-${i}`}>
+      <ul className={`main-nav__list ${classForMenu}`}>
+        {links.map((elem) => (
+          <li className="main-nav__item" key={`menu-${elem.title}`}>
             <Link to={elem.link} className={`main-nav__link${elem.isActive ? ` main-nav__link--active` : ``}`}>
               {elem.title}
             </Link>
@@ -18,6 +18,11 @@ const MainNavigation = (props) => {
       </ul>
     </nav>
   );
+};
+
+MainNavigation.defaultProps = {
+  classForWrapper: `main-header__nav`,
+  classForMenu: ``
 };
 
 MainNavigation.propTypes = {

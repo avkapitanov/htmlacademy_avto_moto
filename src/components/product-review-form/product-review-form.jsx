@@ -4,9 +4,10 @@ import {extend} from "../../utils";
 import {addReviewToProduct} from "../../store/api-actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import withAddReviewForm from "../../hocs/with-add-review-form/with-add-review-form";
 
 const ProductReviewForm = (props) => {
-  const {addReviewElement, isVisibleForm, onCloseFormHandler} = props;
+  const {addReviewElement, isVisibleForm, onCloseFormHandler, formValues, onFormChange} = props;
 
   if (!isVisibleForm) {
     return null;
@@ -25,16 +26,8 @@ const ProductReviewForm = (props) => {
   const nameRef = useRef();
 
   const isRequiredError = (name) => {
-    return touched[name] && formValue[name].length === 0;
+    return touched[name] && formValues[name].length === 0;
   };
-
-  const [formValue, setFormValues] = useState({
-    author: ``,
-    dignity: ``,
-    disadvantages: ``,
-    text: ``,
-    rating: 0
-  });
 
   const hasErrors = () => {
     for (const [key] of Object.entries(error)) {
@@ -51,7 +44,7 @@ const ProductReviewForm = (props) => {
       return;
     }
 
-    const {author, dignity, disadvantages, rating, text} = formValue;
+    const {author, dignity, disadvantages, rating, text} = formValues;
     addReviewElement(author, dignity, disadvantages, rating, text, () => {
       evt.currentTarget.reset();
       onCloseFormHandler();
@@ -66,7 +59,7 @@ const ProductReviewForm = (props) => {
 
   const handleChange = (evt) => {
     const {name, value} = evt.target;
-    setFormValues(extend(formValue, {[name]: value}));
+    onFormChange(name, value);
     setError(extend(error, {[name]: isRequiredError(name)}));
   };
 
@@ -121,7 +114,9 @@ const ProductReviewForm = (props) => {
 ProductReviewForm.propTypes = {
   addReviewElement: PropTypes.func.isRequired,
   onCloseFormHandler: PropTypes.func.isRequired,
-  isVisibleForm: PropTypes.bool.isRequired
+  onFormChange: PropTypes.func.isRequired,
+  isVisibleForm: PropTypes.bool.isRequired,
+  formValues: PropTypes.object.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -130,4 +125,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(ProductReviewForm);
+export default connect(null, mapDispatchToProps)(withAddReviewForm(ProductReviewForm));

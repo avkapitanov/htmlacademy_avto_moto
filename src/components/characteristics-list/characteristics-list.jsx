@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CharacteristicsItem from "../characteristics-item/characteristics-item";
+import characteristicsProp from "../pages/product-page/characteristics.prop";
 
 const CharacteristicsList = (props) => {
   const {characteristics} = props;
@@ -12,8 +13,8 @@ const CharacteristicsList = (props) => {
   return (
     <dl className="product-card__tabs-content tab-characteristics">
       {
-        characteristics.map((characteristic, i) =>
-          <CharacteristicsItem characteristic={characteristic} key={`characteristic-${i}`}/>
+        characteristics.map((characteristic) =>
+          <CharacteristicsItem characteristic={characteristic} key={`characteristic-${characteristic.name}`}/>
         )
       }
     </dl>
@@ -21,10 +22,7 @@ const CharacteristicsList = (props) => {
 };
 
 CharacteristicsList.propTypes = {
-  characteristics: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired
-  }))
+  characteristics: PropTypes.arrayOf(characteristicsProp)
 };
 
 export default CharacteristicsList;

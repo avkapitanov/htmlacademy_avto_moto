@@ -1,5 +1,5 @@
 import React from "react";
-import {YMaps, Map, Placemark} from 'react-yandex-maps';
+import {YMaps, Map, Placemark} from "react-yandex-maps";
 import {MAP_ICON_OPTIONS, MAP_OFFICE_COORDINATES, MAP_OFFICE_ZOOM} from "../../constants";
 
 const ProductContacts = () => {

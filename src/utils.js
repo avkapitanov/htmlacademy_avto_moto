@@ -1,5 +1,5 @@
 import {CURRENCY_SYMBOL, LOCAL_STORAGE_REVIEW_NAME, LOCALE} from "./constants";
-import {nanoid} from 'nanoid';
+import {nanoid} from "nanoid";
 import mockReviews from "./mocks/reviews";
 
 export const extend = (firstObj, secondObj) => {

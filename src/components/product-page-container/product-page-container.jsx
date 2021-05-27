@@ -20,7 +20,7 @@ const ProductPageContainer = (props) => {
             <ProductPageInfo product={product}/>
           </div>
         </div>
-        <ProductPageTabs tabs={Object.values(ProductTab)} product={product}/>
+        <ProductPageTabs tabs={Object.values(ProductTab)} characteristics={product.characteristics}/>
       </section>
     </main>
   );

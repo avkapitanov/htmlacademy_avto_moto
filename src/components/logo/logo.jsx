@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, useLocation} from 'react-router-dom';
+import {Link, useLocation} from "react-router-dom";
 import {ReactComponent as ReactLogo} from "../../img/logo.svg";
 
 const Logo = () => {
@@ -22,7 +22,6 @@ const Logo = () => {
       <ReactLogo className={logoClass} />
     </Link>
   );
-
 };
 
 export default Logo;

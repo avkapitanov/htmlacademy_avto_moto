@@ -1,20 +1,20 @@
-import React, {useState} from "react";
+import React from "react";
 import CharacteristicsList from "../characteristics-list/characteristics-list";
-import {DEFAULT_PRODUCT_ACTIVE_TAB, ProductTab} from "../../constants";
+import {ProductTab} from "../../constants";
 import ProductPageTabsNav from "../product-page-tabs-nav/product-page-tabs-nav";
 import ProductReviewsList from "../product-reviews-list/product-reviews-list";
 import ProductContacts from "../product-contacts/product-contacts";
 import PropTypes from "prop-types";
-import productProp from "../pages/product-page/poduct.prop";
+import characteristicsProp from "../pages/product-page/characteristics.prop";
+import withProductPageTabs from "../../hocs/with-active-tab/with-active-tab";
 
 const ProductPageTabs = (props) => {
-  const [activeTab, setActiveTab] = useState(DEFAULT_PRODUCT_ACTIVE_TAB);
-  const {tabs, product} = props;
+  const {tabs, activeTab, characteristics, onActiveTabChange} = props;
 
   let tabContent;
   switch (activeTab) {
     case ProductTab.CHARACTERISTICS:
-      tabContent = <CharacteristicsList characteristics={product.characteristics}/>;
+      tabContent = <CharacteristicsList characteristics={characteristics}/>;
       break;
     case ProductTab.REVIEWS:
       tabContent = <ProductReviewsList/>;
@@ -26,7 +26,7 @@ const ProductPageTabs = (props) => {
 
   return (
     <div className="product-card__tabs">
-      <ProductPageTabsNav tabs={tabs} activeTab={activeTab} onActiveTabChange={setActiveTab}/>
+      <ProductPageTabsNav tabs={tabs} activeTab={activeTab} onActiveTabChange={onActiveTabChange}/>
       {tabContent}
     </div>
   );
@@ -34,6 +34,9 @@ const ProductPageTabs = (props) => {
 
 ProductPageTabs.propTypes = {
   tabs: PropTypes.array.isRequired,
-  product: productProp
+  characteristics: PropTypes.arrayOf(characteristicsProp),
+  activeTab: PropTypes.string.isRequired,
+  onActiveTabChange: PropTypes.func.isRequired
 };
-export default ProductPageTabs;
+
+export default withProductPageTabs(ProductPageTabs);

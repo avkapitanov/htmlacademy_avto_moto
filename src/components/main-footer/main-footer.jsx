@@ -6,7 +6,7 @@ const MainFooter = () => {
   return (
     <footer className="app__footer main-footer">
       <div className="main-footer__container container">
-        <MainNavigation classForWrapper={`main-footer__nav`} classForMenu={`main-nav__list--footer`} links={FOOTER_LINKS}/>
+        <MainNavigation classForWrapper="main-footer__nav" classForMenu="main-nav__list--footer" links={FOOTER_LINKS}/>
       </div>
     </footer>
   );

@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {createStore, applyMiddleware} from "redux";
-import thunk from 'redux-thunk';
-
-import './sass/style.scss';
-import App from './components/app/app';
-import {composeWithDevTools} from "redux-devtools-extension";
-import rootReducer from "./store/reducers/root-reducer";
+import React from "react";
+import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
+import {createStore, applyMiddleware} from "redux";
+import {composeWithDevTools} from "redux-devtools-extension";
+import thunk from "redux-thunk";
+
+import rootReducer from "./store/reducers/root-reducer";
+import "./sass/style.scss";
+import App from "./components/app/app";
 
 import TimeAgo from "javascript-time-ago";
 import ru from "javascript-time-ago/locale/ru";

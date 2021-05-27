@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import characteristicsProp from "../pages/product-page/characteristics.prop";
 
 const CharacteristicsItem = (props) => {
   const {characteristic} = props;
@@ -14,10 +14,7 @@ const CharacteristicsItem = (props) => {
 };
 
 CharacteristicsItem.propTypes = {
-  characteristic: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired
-  })
+  characteristic: characteristicsProp
 };
 
 export default CharacteristicsItem;

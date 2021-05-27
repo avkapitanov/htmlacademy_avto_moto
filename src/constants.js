@@ -84,3 +84,5 @@ export const MAP_ICON_OPTIONS = {
 
 export const LOCAL_STORAGE_REVIEW_NAME = `productReviews`;
 export const KEY_CODE_FOR_CLOSE_POPUP = 27;
+
+export const DEFAULT_RATING_VALUE_IN_FORM = 0;
