@@ -1,16 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
 import reviewsProp from "../pages/product-page/reviews.prop";
 import ProductReviewItem from "../product-review-item/product-review-item";
 import {getReviews} from "../../store/selectors";
 import {connect} from "react-redux";
 import ProductReviewForm from "../product-review-form/product-review-form";
 import {KEY_CODE_FOR_CLOSE_POPUP} from "../../constants";
+import withModalForm from "../../hocs/with-modal-form/with-modal-form";
+import PropTypes from "prop-types";
 
 const ProductReviewsList = (props) => {
-  const {reviews} = props;
+  const {reviews, isVisibleForm, onModalVisibilityChange} = props;
   const lockClass = `body--lock`;
-
-  const [isVisibleForm, setVisibleForm] = useState(false);
 
   const body = document.querySelector(`body`);
 
@@ -23,7 +23,7 @@ const ProductReviewsList = (props) => {
   };
 
   const showAddReviewForm = () => {
-    setVisibleForm(true);
+    onModalVisibilityChange(true);
     window.addEventListener(`keydown`, closeFormByEsc);
     body.dataset.scrollY = getBodyScrollTop();
 
@@ -41,7 +41,7 @@ const ProductReviewsList = (props) => {
   };
 
   const closeAddReviewForm = () => {
-    setVisibleForm(false);
+    onModalVisibilityChange(false);
     window.removeEventListener(`keydown`, closeFormByEsc);
 
     if (existVerticalScroll()) {
@@ -66,11 +66,13 @@ const ProductReviewsList = (props) => {
 };
 
 ProductReviewsList.propTypes = {
-  reviews: reviewsProp
+  reviews: reviewsProp,
+  isVisibleForm: PropTypes.bool.isRequired,
+  onModalVisibilityChange: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   reviews: getReviews(state),
 });
 
-export default connect(mapStateToProps)(ProductReviewsList);
+export default connect(mapStateToProps)(withModalForm(ProductReviewsList));

@@ -1,27 +1,16 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef} from "react";
 import StarRatingInput from "../star-rating-input/star-rating-input";
-import {extend} from "../../utils";
 import {addReviewToProduct} from "../../store/api-actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import withAddReviewForm from "../../hocs/with-add-review-form/with-add-review-form";
 
 const ProductReviewForm = (props) => {
-  const {addReviewElement, isVisibleForm, onCloseFormHandler, formValues, onFormChange} = props;
+  const {addReviewElement, isVisibleForm, onCloseFormHandler, formValues, onFormChange, touched, setTouched, error, setError} = props;
 
   if (!isVisibleForm) {
     return null;
   }
-
-  const [touched, setTouched] = useState({
-    author: false,
-    text: false
-  });
-
-  const [error, setError] = useState({
-    author: false,
-    text: false
-  });
 
   const nameRef = useRef();
 
@@ -53,14 +42,18 @@ const ProductReviewForm = (props) => {
 
   const handleFocus = (evt) => {
     const {name} = evt.target;
-    setTouched(extend(touched, {[name]: true}));
-    setError(extend(error, {[name]: isRequiredError(name)}));
+    setTouched(name, true);
+  };
+
+  const handleBlur = (evt) => {
+    const {name} = evt.target;
+    setError(name, isRequiredError(name));
   };
 
   const handleChange = (evt) => {
     const {name, value} = evt.target;
     onFormChange(name, value);
-    setError(extend(error, {[name]: isRequiredError(name)}));
+    setError(name, isRequiredError(name));
   };
 
   useEffect(() => {
@@ -80,7 +73,7 @@ const ProductReviewForm = (props) => {
             <p className="review-form__group review-form__group--required">
               <label className="review-form__label visually-hidden" htmlFor="review-name">Имя</label>
               {error.author ? errorEmptyField : null }
-              <input className={`review-form__input ${error.author ? `review-form__input--error` : ``}`} id="review-name" type="text" placeholder="Имя" ref={nameRef} onChange={handleChange} onBlur={handleFocus} onFocus={handleFocus} name="author"/>
+              <input className={`review-form__input ${error.author ? `review-form__input--error` : ``}`} id="review-name" type="text" placeholder="Имя" ref={nameRef} onChange={handleChange} onBlur={handleBlur} onFocus={handleFocus} name="author"/>
             </p>
             <p className="review-form__group">
               <label className="review-form__label visually-hidden" htmlFor="review-dignity">Достоинства</label>
@@ -99,7 +92,7 @@ const ProductReviewForm = (props) => {
               <span className="review-form__group-error">Пожалуйста, заполните поле</span>
               <label className="review-form__label visually-hidden" htmlFor="review-text">Комментарий</label>
               {error.text ? errorEmptyField : null }
-              <textarea className={`review-form__textarea ${error.text ? `review-form__textarea--error` : ``}`} id="review-text" placeholder="Комментарий" onChange={handleChange} onBlur={handleFocus} onFocus={handleFocus} name="text"></textarea>
+              <textarea className={`review-form__textarea ${error.text ? `review-form__textarea--error` : ``}`} id="review-text" placeholder="Комментарий" onChange={handleChange} onBlur={handleBlur} onFocus={handleFocus} name="text"></textarea>
             </p>
           </fieldset>
         </div>
@@ -116,7 +109,11 @@ ProductReviewForm.propTypes = {
   onCloseFormHandler: PropTypes.func.isRequired,
   onFormChange: PropTypes.func.isRequired,
   isVisibleForm: PropTypes.bool.isRequired,
-  formValues: PropTypes.object.isRequired
+  formValues: PropTypes.object.isRequired,
+  touched: PropTypes.object.isRequired,
+  error: PropTypes.object.isRequired,
+  setTouched: PropTypes.func.isRequired,
+  setError: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

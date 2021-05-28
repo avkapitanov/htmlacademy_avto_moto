@@ -26,7 +26,7 @@ MainNavigation.defaultProps = {
 };
 
 MainNavigation.propTypes = {
-  classForWrapper: PropTypes.string.isRequired,
+  classForWrapper: PropTypes.string,
   classForMenu: PropTypes.string,
   links: PropTypes.arrayOf(PropTypes.shape({
     link: PropTypes.string.isRequired,
