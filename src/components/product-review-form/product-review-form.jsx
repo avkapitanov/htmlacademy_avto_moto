@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import withAddReviewForm from "../../hocs/with-add-review-form/with-add-review-form";
 
 const ProductReviewForm = (props) => {
-  const {addReviewElement, isVisibleForm, onCloseFormHandler, formValues, onFormChange, touched, setTouched, error, setError} = props;
+  const {addReviewElement, isVisibleForm, onCloseFormHandler, onFormSubmit, formValues, onFormChange, error, setError} = props;
 
   if (!isVisibleForm) {
     return null;
@@ -15,16 +15,20 @@ const ProductReviewForm = (props) => {
   const nameRef = useRef();
 
   const isRequiredError = (name) => {
-    return touched[name] && formValues[name].length === 0;
+    return formValues[name].length === 0;
   };
 
   const hasErrors = () => {
+    let result = false;
+    const newErrors = Object.assign({}, error);
     for (const [key] of Object.entries(error)) {
-      if (error[key] === true) {
-        return true;
+      newErrors[key] = isRequiredError(key);
+      if (newErrors[key]) {
+        result = true;
       }
     }
-    return false;
+    setError(newErrors);
+    return result;
   };
 
   const handleSubmit = (evt) => {
@@ -37,23 +41,13 @@ const ProductReviewForm = (props) => {
     addReviewElement(author, dignity, disadvantages, rating, text, () => {
       evt.currentTarget.reset();
       onCloseFormHandler();
+      onFormSubmit();
     });
-  };
-
-  const handleFocus = (evt) => {
-    const {name} = evt.target;
-    setTouched(name, true);
-  };
-
-  const handleBlur = (evt) => {
-    const {name} = evt.target;
-    setError(name, isRequiredError(name));
   };
 
   const handleChange = (evt) => {
     const {name, value} = evt.target;
     onFormChange(name, value);
-    setError(name, isRequiredError(name));
   };
 
   useEffect(() => {
@@ -73,7 +67,7 @@ const ProductReviewForm = (props) => {
             <p className="review-form__group review-form__group--required">
               <label className="review-form__label visually-hidden" htmlFor="review-name">Имя</label>
               {error.author ? errorEmptyField : null }
-              <input className={`review-form__input ${error.author ? `review-form__input--error` : ``}`} id="review-name" type="text" placeholder="Имя" ref={nameRef} onChange={handleChange} onBlur={handleBlur} onFocus={handleFocus} name="author"/>
+              <input className={`review-form__input ${error.author ? `review-form__input--error` : ``}`} id="review-name" type="text" placeholder="Имя" ref={nameRef} onChange={handleChange} name="author"/>
             </p>
             <p className="review-form__group">
               <label className="review-form__label visually-hidden" htmlFor="review-dignity">Достоинства</label>
@@ -92,7 +86,7 @@ const ProductReviewForm = (props) => {
               <span className="review-form__group-error">Пожалуйста, заполните поле</span>
               <label className="review-form__label visually-hidden" htmlFor="review-text">Комментарий</label>
               {error.text ? errorEmptyField : null }
-              <textarea className={`review-form__textarea ${error.text ? `review-form__textarea--error` : ``}`} id="review-text" placeholder="Комментарий" onChange={handleChange} onBlur={handleBlur} onFocus={handleFocus} name="text"></textarea>
+              <textarea className={`review-form__textarea ${error.text ? `review-form__textarea--error` : ``}`} id="review-text" placeholder="Комментарий" onChange={handleChange} name="text"></textarea>
             </p>
           </fieldset>
         </div>
@@ -108,11 +102,10 @@ ProductReviewForm.propTypes = {
   addReviewElement: PropTypes.func.isRequired,
   onCloseFormHandler: PropTypes.func.isRequired,
   onFormChange: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
   isVisibleForm: PropTypes.bool.isRequired,
   formValues: PropTypes.object.isRequired,
-  touched: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,
-  setTouched: PropTypes.func.isRequired,
   setError: PropTypes.func.isRequired,
 };
 
