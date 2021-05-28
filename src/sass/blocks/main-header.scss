@@ -18,6 +18,7 @@
 
   &__logo-wrapper {
     margin-top: 5px;
+    margin-right: 40px;
   }
 
   &__container {
@@ -27,16 +28,11 @@
     align-items: center;
     position: relative;
   }
-
-  &__nav {
-    min-width: 520px;
-  }
 }
 
 @media (max-width: $tablet-width) {
   .main-header {
     &__nav {
-      min-width: auto;
       display: none;
     }
 

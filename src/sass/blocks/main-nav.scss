@@ -2,19 +2,21 @@
   &__list {
     @include reset-list();
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
+
+    &--footer {
+      .main-nav__item {
+        margin-right: 66px;
+      }
+    }
   }
 
   &__item {
-    padding: 0 10px;
-
-    &:first-of-type {
-      padding-left: 0;
-    }
+    margin-right: 68px;
 
     &:last-of-type {
-      padding-right: 0;
+      margin-right: 0;
     }
   }
 
@@ -32,6 +34,14 @@
 
 @media (max-width: $tablet-width) {
   .main-nav {
+    &__list {
+      &--footer {
+        .main-nav__item {
+          margin-right: 0;
+        }
+      }
+    }
+
     &__item {
       padding: 0;
     }
